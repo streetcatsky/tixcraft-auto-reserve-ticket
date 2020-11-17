@@ -1,10 +1,14 @@
-
-
-import debugLog from './config/debugLog'
-import HandlePuppeteer from './library/HandlePuppeteer'
 import config from '../env.json'
 
 
-new HandlePuppeteer(config.targetUrl).run()
+import('./library/HandlePuppeteer')
+    .then(res => {
+        new res.default({
+            targetUrl: config.targetUrl,
+            gameDate: config.gameDate,
+            seatType: config.seatType,
+            ticketNumber: config.ticketNumber
+        }).run()
+    })
 
-debugLog.info('Hello World')
+
