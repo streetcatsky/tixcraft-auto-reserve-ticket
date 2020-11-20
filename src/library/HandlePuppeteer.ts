@@ -112,23 +112,27 @@ class HandlePuppeteer {
         }, this.seatType);
         debugLog.succe('找到座位類型')
         debugLog.succe('id: ', seatID)
-        await this.page.click(`[id="${seatID}"]`, { clickCount: 2 })
+        await this.page.click(`[id="${seatID}"]`, { clickCount: 2, delay: 150 })
     }
 
     async setTicketNumber() {
-        debugLog.info('設定票數: ' + this.ticketNumber)
+
         await this.page.waitForSelector('.mobile-select')
+        debugLog.info('設定票數: ' + this.ticketNumber)
         await this.page.select('.mobile-select', this.ticketNumber)
         debugLog.succe('票數設定完成')
     }
 
     async autoCheckAgree() {
-        debugLog.info('勾選我同意確認框 ...')
+
         await this.page.waitForSelector('#TicketForm_agree')
+        debugLog.info('勾選我同意確認框 ...')
         await this.page.click('#TicketForm_agree')
+        debugLog.succe('勾選完成')
     }
 
     async focusCerifyCode() {
+        debugLog.warn('加油 北鼻快完成惹 <3')
         await this.page.waitForSelector('#TicketForm_verifyCode')
         await this.page.focus('#TicketForm_verifyCode')
     }
